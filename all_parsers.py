@@ -147,8 +147,8 @@ class BrandParsers:
 
 if __name__=="__main__":
     settings = json.loads(open("parsing_settings.json").read())
-    brand_id = "3"
-    URL="https://www.fendi.com/us-en/woman/shoes/baguette-mauve-pink-metallic-leather-slides-8r8136ai16f0ana"
+    brand_id = "0"
+    URL="YOUR_PRODUCT_PAGE_URL_HERE"
     driver = webdriver.Chrome(options=options)
     driver.get(URL)
     brand_html_content = driver.execute_script("return document.documentElement.outerHTML;")
