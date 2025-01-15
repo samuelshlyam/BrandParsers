@@ -125,55 +125,21 @@ class BrandParsers:
                     product_details["Images"].append(images)
 
         # Get product id
-        pid_1_type = brand_settings.get("Product_ID_1_Type","")
-        pid_1_class = brand_settings.get("Product_ID_1_Class","")
-        pid_1_method = brand_settings.get("Product_ID_1_Method", "")
-        pid_1_number=brand_settings.get("Product_ID_1_Number", "")
-        pid_2_type = brand_settings.get("Product_ID_2_Type", "")
-        pid_2_class = brand_settings.get("Product_ID_2_Class", "")
-        pid_2_method = brand_settings.get("Product_ID_2_Method", "")
-        pid_2_number = brand_settings.get("Product_ID_2_Number", "")
-        pid_3_type = brand_settings.get("Product_ID_3_Type", "")
-        pid_3_class = brand_settings.get("Product_ID_3_Class", "")
-        pid_3_method = brand_settings.get("Product_ID_3_Method", "")
-        pid_3_number = brand_settings.get("Product_ID_3_Number", "")
-        pid_4_type = brand_settings.get("Product_ID_4_Type", "")
-        pid_4_class = brand_settings.get("Product_ID_4_Class", "")
-        pid_4_method = brand_settings.get("Product_ID_4_Method", "")
-        pid_4_number = brand_settings.get("Product_ID_4_Number", "")
-        pid_list=[{"pid_type":pid_1_type,
-                   "pid_class":pid_1_class,
-                   "pid_method":pid_1_method,
-                   "pid_number":pid_1_number},
-                  {"pid_type":pid_2_type,
-                   "pid_class":pid_2_class,
-                   "pid_method":pid_2_method,
-                   "pid_number":pid_2_number},
-                  {"pid_type": pid_3_type,
-                   "pid_class": pid_3_class,
-                   "pid_method": pid_3_method,
-                   "pid_number": pid_3_number},
-                  {"pid_type": pid_4_type,
-                   "pid_class": pid_4_class,
-                   "pid_method": pid_4_method,
-                   "pid_number": pid_4_number}
-                  ]
-        for index,pid_dict in enumerate(pid_list):
-            pid_type=pid_dict["pid_type"]
-            pid_class=pid_dict["pid_class"]
-            pid_method=pid_dict["pid_method"]
-            pid_number=pid_dict["pid_number"]
-            if pid_method=="List":
-                pid_blocks = outer_details_block.find_all(pid_type, class_=pid_class)
-                pid_block=pid_blocks[pid_number]
-                if pid_block:
-                    pid = pid_block.text.strip()
-                    product_details[f"Product ID {index}"] = pid
-            else:
-                pid_block=outer_details_block.find(pid_type, class_=pid_class)
-                if pid_block:
-                    pid = pid_block.text.strip()
-                    product_details[f"Product ID {index}"] = pid
+        pid_type = brand_settings.get("Product_ID_Type","")
+        pid_class = brand_settings.get("Product_ID_Class","")
+        pid_method = brand_settings.get("Product_ID_Method", "")
+        pid_number=brand_settings.get("Product_ID_Number", "")
+        if pid_method=="List":
+            pid_blocks = outer_details_block.find_all(pid_type, class_=pid_class)
+            pid_block=pid_blocks[pid_number]
+            if pid_block:
+                pid = pid_block.text.strip()
+                product_details["Product ID"] = pid
+        else:
+            pid_block=outer_details_block.find(pid_type, class_=pid_class)
+            if pid_block:
+                pid = pid_block.text.strip()
+                product_details["Product ID"] = pid
 
         return product_details
 
@@ -181,8 +147,8 @@ class BrandParsers:
 
 if __name__=="__main__":
     settings = json.loads(open("parsing_settings.json").read())
-    brand_id = "201"
-    URL="https://www.fendi.com/us-en/woman/shoes/baguette-mauve-pink-metallic-leather-slides-8r8136ai16f0ana"
+    brand_id = "0"
+    URL="YOUR_PRODUCT_PAGE_URL_HERE"
     driver = webdriver.Chrome(options=options)
     driver.get(URL)
     brand_html_content = driver.execute_script("return document.documentElement.outerHTML;")
