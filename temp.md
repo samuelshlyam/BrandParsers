@@ -1,7 +1,7 @@
 # README
 
 ## Notes for New Brands
-When adding a new brand, create a new object in parsing_settings.json with the next chronological brand ID (e.g., "4").  
+When adding a new brand, create a new object in parsing_settings.json with the brand ID provided in the Excel.  
 Use underscores if your brand name has multiple words (e.g., "My_New_Brand").  
 Identify the outer HTML element (type and class) that wraps all product info.  
 Fill in the fields for price, name, color, composition, etc.  
@@ -13,7 +13,7 @@ Also note that there may be multiple product IDs, and all these Product IDs must
 ## Structure of parsing_settings.json
 Each brand has an entry, labeled with a brand ID (for example, 0, 1, 2, 3). Inside each entry, there are several fields describing the HTML structure:
 
-- **Brand_Name**: The name of the brand, written with underscores if it has multiple words (e.g., Fendi or Loewe).  
+- **Brand_Name**: The name of the brand, written with underscores if it has multiple words (e.g., Fendi or Alexander_Mcqueen).  
 - **Outer_Type / Outer_Class**: The outermost HTML element that contains all product data.  
   - Example: A `<div>` with class "product-detail"  
 - **Original_Price_Type / Original_Price_Class**: The HTML tag and class where the original price is found.  
