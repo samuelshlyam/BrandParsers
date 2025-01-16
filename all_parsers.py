@@ -154,4 +154,4 @@ if __name__=="__main__":
     brand_html_content = driver.execute_script("return document.documentElement.outerHTML;")
     product_details=BrandParsers(brand_html_content,settings,brand_id).product_details
     print(product_details)
-
+#a
