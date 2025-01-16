@@ -69,7 +69,7 @@ if __name__=="__main__":
     settings = json.loads(open("parsing_settings.json").read())
     brand_id = "201"  # Example for Fendi
     URL="https://www.fendi.com/us-en/woman/shoes/..."
-    ...
+```
 Set the brand_id to the correct number from parsing_settings.json (this number matches the brand entry you want to parse).
 
 Set the URL to the product page you want to parse.
