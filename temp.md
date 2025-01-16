@@ -1,7 +1,7 @@
 # README
 
 ## Notes for New Brands
-When adding a new brand, create a new object in parsing_settings.json with the brand ID provided in the Excel.  
+When adding a new brand, create a new object in parsing_settings.json with the brand ID provided in the spreadsheet.  
 Use underscores if your brand name has multiple words (e.g., "My_New_Brand").  
 Identify the outer HTML element (type and class) that wraps all product info.  
 Fill in the fields for price, name, color, composition, etc.  
