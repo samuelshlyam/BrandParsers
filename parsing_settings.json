@@ -25,6 +25,12 @@
   "Images_Key": "",
   "Product_ID_Type": "",
   "Product_ID_Class": "",
+  "Product_ID_2_Class":"",
+  "Product_ID_2_Type":"",
+  "Product_ID_3_Class":"",
+  "Product_ID_3_Type":"",
+  "Product_ID_4_Class":"",
+  "Product_ID_4_Type":"",
   "Product_ID_Method": "",
   "Product_ID_Number": ""
   }
