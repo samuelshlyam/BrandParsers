@@ -11,7 +11,7 @@ If the product ID is in a list, set "Product_ID_Method": "List", and pick the co
 Also note that there may be multiple product IDs, and all these Product IDs must be saved.
 
 ## Structure of parsing_settings.json
-Each brand has an entry, labeled with a brand ID (for example, 0, 1, 2, 3). Inside each entry, there are several fields describing the HTML structure:
+Each brand has an entry, labeled with a brand ID (for example, 201, 310, 229). Inside each entry, there are several fields describing the HTML structure:
 
 - **Brand_Name**: The name of the brand, written with underscores if it has multiple words (e.g., Fendi or Alexander_Mcqueen).  
 - **Outer_Type / Outer_Class**: The outermost HTML element that contains all product data.  
@@ -67,7 +67,7 @@ Check the `__main__` block at the bottom of all_parsers.py. You will see somethi
 ```python
 if __name__=="__main__":
     settings = json.loads(open("parsing_settings.json").read())
-    brand_id = "3"  # Example for Fendi
+    brand_id = "201"  # Example for Fendi
     URL="https://www.fendi.com/us-en/woman/shoes/..."
     ...
 Set the brand_id to the correct number from parsing_settings.json (this number matches the brand entry you want to parse).
