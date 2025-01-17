@@ -6,7 +6,7 @@ Use underscores if your brand name has multiple words (e.g., "My_New_Brand").
 Identify the outer HTML element (type and class) that wraps all product info.  
 Fill in the fields for price, name, color, composition, etc.  
 If some fields do not exist (like a sale price or composition), leave them empty strings: "".  
-If the product ID is in a list, set "Product_ID_Method": "List", and pick the correct index with "Product_ID_Number".
+If the product ID is in a list, set "Product_ID_Method": "List", and "Product_ID_Text": "text associated with product id block"
 
 Also note that there may be multiple product IDs, and all these Product IDs must be saved.
 
@@ -29,28 +29,40 @@ Each brand has an entry, labeled with a brand ID (for example, 201, 310, 229). I
 - **Images_Method** and **Images_Key** explain how the image data is stored. For instance, "Dictionary" with `src` or `srcset`.  
 - **Product_ID_Type / Product_ID_Class**: The HTML tag and class where the product ID is found.
 
-Sometimes, **Product_ID_Method** can be "List", which means the product ID might appear in a list of similar blocks, and we must look at **Product_ID_Number** (the position of the correct block in the list).
+Sometimes, **Product_ID_Method** can be "List", which means the product ID might appear in a list of similar blocks, and we must look at **Product_ID_Text** (the associated text in the block).
 
 ## Example
-"2": {  
-  "Brand_Name": "Loewe",  
-  "Outer_Type": "div",  
-  "Outer_Class": "capds-product-container",  
-  "Original_Price_Type": "span",  
-  "Original_Price_Class": "capds-product__price--active",  
-  ...  
-  "Product_ID_Type": "p",  
-  "Product_ID_Class": "capds-sm-label",  
-  "Product_ID_Method": "List",  
-  "Product_ID_Number": 15  
-}
-
+  "310": {
+  "Brand_Name": "Loewe",
+  "Outer_Type": "div",
+  "Outer_Class": "capds-product-container",
+  "Original_Price_Type": "span",
+  "Original_Price_Class": "capds-product__price--active",
+...
+  "Product_ID_1_Type": "p",
+  "Product_ID_1_Class": "capds-sm-label",
+  "Product_ID_1_Method": "List",
+  "Product_ID_1_Text": "Model ID: ",
+  "Product_ID_2_Class":"p",
+  "Product_ID_2_Type":"capds-sm-label",
+  "Product_ID_2_Method": "List",
+  "Product_ID_2_Text": "CIL: ",
+  "Product_ID_3_Class":"",
+  "Product_ID_3_Type":"",
+  "Product_ID_3_Method": "",
+  "Product_ID_3_Text": "",
+...
+  }
+HTML code example:
+<p class="capds-sm-label">Depth (inch) : 3.1</p>
+<p class="capds-sm-label">Model ID :A510P88X26</p>
+<p class="js-details-panel-cil capds-sm-label">CIL :<span>0010965499</span></p>
+<p class="capds-sm-label">Made in :Spain</p>
 Here, to find the product ID for Loewe items, the parser:
 
 - Locates all `<p>` elements with the class "capds-sm-label".  
-- Takes the 15th element from that list.  
-- Gets the text inside that element as the Product ID.
-
+- Finds the element in the list that contains the text "Model ID: " and extracts the text from that block getting rid of the "Model ID: " text
+-It will also do the same thing to get the secondary product ID by looking for the text "CIL: "
 ## Special Cases
 If a brand’s Product ID, URL, or prices are stored in a completely different way than the ones covered in the script, skip that brand and write a note about the issue.  
 If a brand stores data in a part of the HTML that the script cannot handle with current methods (for example, data hidden in JavaScript or in a special tag), write a note explaining the brand and how it stores data. This alerts us that all_parsers.py may need changes.
