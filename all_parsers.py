@@ -183,8 +183,10 @@ if __name__=="__main__":
     settings = json.loads(open("parsing_settings.json").read())
     brand_id = "201"
     URL="https://www.fendi.com/us-en/woman/shoes/baguette-mauve-pink-metallic-leather-slides-8r8136ai16f0ana"
+
     driver = webdriver.Chrome(options=options)
     driver.get(URL)
     brand_html_content = driver.execute_script("return document.documentElement.outerHTML;")
     product_details=BrandParsers(brand_html_content,settings,brand_id).product_details
     print(product_details)
+
